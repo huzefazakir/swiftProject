@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88F919171A1AE6DA001D5037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F919161A1AE6DA001D5037 /* AppDelegate.swift */; };
+		88F919191A1AE6DA001D5037 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F919181A1AE6DA001D5037 /* ViewController.swift */; };
+		88F9191C1A1AE6DA001D5037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F9191A1A1AE6DA001D5037 /* Main.storyboard */; };
+		88F9191E1A1AE6DA001D5037 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88F9191D1A1AE6DA001D5037 /* Images.xcassets */; };
+		88F919211A1AE6DA001D5037 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F9191F1A1AE6DA001D5037 /* LaunchScreen.xib */; };
+		88F9192D1A1AE6DA001D5037 /* LikeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F9192C1A1AE6DA001D5037 /* LikeyTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88F919271A1AE6DA001D5037 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88F919091A1AE6DA001D5037 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88F919101A1AE6DA001D5037;
+			remoteInfo = Likey;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		88F919111A1AE6DA001D5037 /* Likey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Likey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F919151A1AE6DA001D5037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F919161A1AE6DA001D5037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88F919181A1AE6DA001D5037 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88F9191B1A1AE6DA001D5037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88F9191D1A1AE6DA001D5037 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		88F919201A1AE6DA001D5037 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		88F919261A1AE6DA001D5037 /* LikeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LikeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88F9192B1A1AE6DA001D5037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88F9192C1A1AE6DA001D5037 /* LikeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeyTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88F9190E1A1AE6DA001D5037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F919231A1AE6DA001D5037 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88F919081A1AE6DA001D5037 = {
+			isa = PBXGroup;
+			children = (
+				88F919131A1AE6DA001D5037 /* Likey */,
+				88F919291A1AE6DA001D5037 /* LikeyTests */,
+				88F919121A1AE6DA001D5037 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88F919121A1AE6DA001D5037 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88F919111A1AE6DA001D5037 /* Likey.app */,
+				88F919261A1AE6DA001D5037 /* LikeyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88F919131A1AE6DA001D5037 /* Likey */ = {
+			isa = PBXGroup;
+			children = (
+				88F919161A1AE6DA001D5037 /* AppDelegate.swift */,
+				88F919181A1AE6DA001D5037 /* ViewController.swift */,
+				88F9191A1A1AE6DA001D5037 /* Main.storyboard */,
+				88F9191D1A1AE6DA001D5037 /* Images.xcassets */,
+				88F9191F1A1AE6DA001D5037 /* LaunchScreen.xib */,
+				88F919141A1AE6DA001D5037 /* Supporting Files */,
+			);
+			path = Likey;
+			sourceTree = "<group>";
+		};
+		88F919141A1AE6DA001D5037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88F919151A1AE6DA001D5037 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88F919291A1AE6DA001D5037 /* LikeyTests */ = {
+			isa = PBXGroup;
+			children = (
+				88F9192C1A1AE6DA001D5037 /* LikeyTests.swift */,
+				88F9192A1A1AE6DA001D5037 /* Supporting Files */,
+			);
+			path = LikeyTests;
+			sourceTree = "<group>";
+		};
+		88F9192A1A1AE6DA001D5037 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88F9192B1A1AE6DA001D5037 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88F919101A1AE6DA001D5037 /* Likey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F919301A1AE6DA001D5037 /* Build configuration list for PBXNativeTarget "Likey" */;
+			buildPhases = (
+				88F9190D1A1AE6DA001D5037 /* Sources */,
+				88F9190E1A1AE6DA001D5037 /* Frameworks */,
+				88F9190F1A1AE6DA001D5037 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Likey;
+			productName = Likey;
+			productReference = 88F919111A1AE6DA001D5037 /* Likey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		88F919251A1AE6DA001D5037 /* LikeyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88F919331A1AE6DA001D5037 /* Build configuration list for PBXNativeTarget "LikeyTests" */;
+			buildPhases = (
+				88F919221A1AE6DA001D5037 /* Sources */,
+				88F919231A1AE6DA001D5037 /* Frameworks */,
+				88F919241A1AE6DA001D5037 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88F919281A1AE6DA001D5037 /* PBXTargetDependency */,
+			);
+			name = LikeyTests;
+			productName = LikeyTests;
+			productReference = 88F919261A1AE6DA001D5037 /* LikeyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88F919091A1AE6DA001D5037 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = self;
+				TargetAttributes = {
+					88F919101A1AE6DA001D5037 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					88F919251A1AE6DA001D5037 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 88F919101A1AE6DA001D5037;
+					};
+				};
+			};
+			buildConfigurationList = 88F9190C1A1AE6DA001D5037 /* Build configuration list for PBXProject "Likey" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88F919081A1AE6DA001D5037;
+			productRefGroup = 88F919121A1AE6DA001D5037 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88F919101A1AE6DA001D5037 /* Likey */,
+				88F919251A1AE6DA001D5037 /* LikeyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88F9190F1A1AE6DA001D5037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F9191C1A1AE6DA001D5037 /* Main.storyboard in Resources */,
+				88F919211A1AE6DA001D5037 /* LaunchScreen.xib in Resources */,
+				88F9191E1A1AE6DA001D5037 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F919241A1AE6DA001D5037 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88F9190D1A1AE6DA001D5037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F919191A1AE6DA001D5037 /* ViewController.swift in Sources */,
+				88F919171A1AE6DA001D5037 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88F919221A1AE6DA001D5037 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88F9192D1A1AE6DA001D5037 /* LikeyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88F919281A1AE6DA001D5037 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88F919101A1AE6DA001D5037 /* Likey */;
+			targetProxy = 88F919271A1AE6DA001D5037 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		88F9191A1A1AE6DA001D5037 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F9191B1A1AE6DA001D5037 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88F9191F1A1AE6DA001D5037 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88F919201A1AE6DA001D5037 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88F9192E1A1AE6DA001D5037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		88F9192F1A1AE6DA001D5037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88F919311A1AE6DA001D5037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Likey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		88F919321A1AE6DA001D5037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Likey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		88F919341A1AE6DA001D5037 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LikeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Likey.app/Likey";
+			};
+			name = Debug;
+		};
+		88F919351A1AE6DA001D5037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LikeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Likey.app/Likey";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88F9190C1A1AE6DA001D5037 /* Build configuration list for PBXProject "Likey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F9192E1A1AE6DA001D5037 /* Debug */,
+				88F9192F1A1AE6DA001D5037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88F919301A1AE6DA001D5037 /* Build configuration list for PBXNativeTarget "Likey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F919311A1AE6DA001D5037 /* Debug */,
+				88F919321A1AE6DA001D5037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88F919331A1AE6DA001D5037 /* Build configuration list for PBXNativeTarget "LikeyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88F919341A1AE6DA001D5037 /* Debug */,
+				88F919351A1AE6DA001D5037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88F919091A1AE6DA001D5037 /* Project object */;
+}
