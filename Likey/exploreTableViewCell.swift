@@ -12,6 +12,8 @@ class exploreTableViewCell: UITableViewCell {
 
     @IBOutlet weak var usernameLabel: UILabel! = UILabel()
     
+    @IBOutlet weak var profileImageView: UIImageView! = UIImageView()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }

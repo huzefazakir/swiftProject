@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeLineTableViewController: UITableViewController {
+class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var timelineData:NSMutableArray = NSMutableArray()
     
@@ -92,7 +92,11 @@ class TimeLineTableViewController: UITableViewController {
                     (success:Bool!, error:NSError!)->Void in
                     if (error == nil){
                         println("Sign Up successful")
-                        self.loadData()
+                        var imagePicker:UIImagePickerController = UIImagePickerController()
+                        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+                        imagePicker.delegate = self
+                        
+                        self.presentViewController(imagePicker, animated: true, completion: nil)
                     } else {
                         let errorString = error.description
                         println(error.description)
@@ -104,8 +108,39 @@ class TimeLineTableViewController: UITableViewController {
 
             self.presentViewController(loginAlert, animated: true, completion:nil)
         } else {
-            self.loadData()
+            //self.loadData()
         }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let scaledImage = self.scaleImageWith(pickedImage, and: CGSizeMake(100, 100))
+        let imageData = UIImagePNGRepresentation(scaledImage)
+        let imageFile:PFFile = PFFile(data: imageData)
+        
+        PFUser.currentUser().setObject(imageFile, forKey: "profileImage")
+        PFUser.currentUser().saveInBackgroundWithBlock{
+            (success:Bool!, error:NSError!)->Void in
+            
+            if(error == nil) {
+                self.loadData()
+            }
+            
+        }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func scaleImageWith(image:UIImage, and newSize:CGSize )->UIImage{
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
+        var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+        
     }
 
     override func viewDidLoad() {
@@ -144,10 +179,24 @@ class TimeLineTableViewController: UITableViewController {
         
         
         cell.usernameLabel.alpha = 0
+        cell.profileImageView.alpha = 0
+        
         cell.usernameLabel.text = person.objectForKey("username") as? String
         
+        let profileImage:PFFile = person.objectForKey("profileImage") as PFFile
+        
+        profileImage.getDataInBackgroundWithBlock{
+            (imageData:NSData!, error:NSError!)->Void in
+            
+            if (error == nil) {
+                let image:UIImage! = UIImage(data: imageData)
+                cell.profileImageView.image = image
+            }
+        }
+        
         UIView.animateWithDuration(0.5, animations: {
-            cell.usernameLabel.alpha = 1;
+            cell.usernameLabel.alpha = 1
+            cell.profileImageView.alpha = 1
         })
 
         return cell
