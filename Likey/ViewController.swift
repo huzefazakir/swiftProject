@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PopUpMenuDelegate {
+
+    var popUpMenu:PopUpMenu = PopUpMenu()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        popUpMenu = PopUpMenu(sourceView: self.view, menuItems: ["first", "second", "third"])
+        popUpMenu.delegate = self
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,10 +27,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func popUpMenuDidSelectButtonAtIndex(index: Int) {
 
+    }
+   
     @IBAction func logout(sender: AnyObject) {
         PFUser.logOut()
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
+    
+    @IBAction func editImage(sender: AnyObject){
+        popUpMenu.showPopUpMenu(true)
+        
+    }
+    
+    
 }
 

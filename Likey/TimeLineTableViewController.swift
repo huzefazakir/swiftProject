@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate {
     
     var timelineData:NSMutableArray = NSMutableArray()
     
@@ -20,8 +20,10 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         super.init(coder: aDecoder)
     }
     
+    
+    
+    
     @IBAction func loadData(){
-        println("load data")
         timelineData.removeAllObjects()
         
         var findTimeLineData:PFQuery = PFQuery(className: "_User")
@@ -45,107 +47,18 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
     
     override func viewDidAppear(animated: Bool) {
         
-        if ((PFUser.currentUser()) == nil) {
-            var loginAlert:UIAlertController = UIAlertController(title: "Sign Up / login", message: "Please sign up or login", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            loginAlert.addTextFieldWithConfigurationHandler({
-                textfield in
-                textfield.placeholder = "Your username"
-            })
-            
-            loginAlert.addTextFieldWithConfigurationHandler({
-                textfield in
-                textfield.placeholder = "Your password"
-                textfield.secureTextEntry = true
-            })
-            
-            loginAlert.addAction(UIAlertAction(title: "Login", style: UIAlertActionStyle.Default, handler: {
-                alertAction in
-                let textFields:NSArray = loginAlert.textFields! as NSArray
-                let usernameTextField = textFields.objectAtIndex(0) as UITextField
-                let passwordTextField = textFields.objectAtIndex(1) as UITextField
-                
-                PFUser.logInWithUsernameInBackground(usernameTextField.text, password: passwordTextField.text){
-                    (user:PFUser!, error:NSError!)->Void in
-                    if ((user) != nil) {
-                        println("login successful")
-                        self.loadData()
-                    } else {
-                        println("login failed")
-                        println(error.description)
-                    }
-                }
-                
-            }))
-            
-            loginAlert.addAction(UIAlertAction(title: "Sign Up", style: UIAlertActionStyle.Default, handler: {
-                alertAction in
-                let textFields:NSArray = loginAlert.textFields! as NSArray
-                let usernameTextField = textFields.objectAtIndex(0) as UITextField
-                let passwordTextField = textFields.objectAtIndex(1) as UITextField
-                
-                var user:PFUser = PFUser()
-                user.username = usernameTextField.text
-                user.password = passwordTextField.text
-                
-                user.signUpInBackgroundWithBlock{
-                    (success:Bool!, error:NSError!)->Void in
-                    if (error == nil){
-                        println("Sign Up successful")
-                        var imagePicker:UIImagePickerController = UIImagePickerController()
-                        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-                        imagePicker.delegate = self
-                        
-                        self.presentViewController(imagePicker, animated: true, completion: nil)
-                    } else {
-                        let errorString = error.description
-                        println(error.description)
-                    }
-                    
-                }
-                
-            }))
-
-            self.presentViewController(loginAlert, animated: true, completion:nil)
+        if (PFUser.currentUser() == nil){
+            self.performSegueWithIdentifier("loginPage", sender: self)
         } else {
-            //self.loadData()
+            self.loadData()
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
-        let scaledImage = self.scaleImageWith(pickedImage, and: CGSizeMake(100, 100))
-        let imageData = UIImagePNGRepresentation(scaledImage)
-        let imageFile:PFFile = PFFile(data: imageData)
-        
-        PFUser.currentUser().setObject(imageFile, forKey: "profileImage")
-        PFUser.currentUser().saveInBackgroundWithBlock{
-            (success:Bool!, error:NSError!)->Void in
-            
-            if(error == nil) {
-                self.loadData()
-            }
-            
-        }
-        
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
     
-    func scaleImageWith(image:UIImage, and newSize:CGSize )->UIImage{
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        image.drawInRect(CGRectMake(0, 0, newSize.width, newSize.height))
-        var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView.registerClass(exploreTableViewCell.classForCoder(), forCellReuseIdentifier: Cell)
+        self.tableView.separatorColor = UIColor.whiteColor()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -177,7 +90,7 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         let cell:exploreTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as exploreTableViewCell
         let person:PFObject = self.timelineData.objectAtIndex(indexPath.row) as PFObject
         
-        
+        cell.selectionStyle = .None
         cell.usernameLabel.alpha = 0
         cell.profileImageView.alpha = 0
         
@@ -202,7 +115,6 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         return cell
     }
     
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
