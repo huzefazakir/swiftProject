@@ -10,6 +10,7 @@ import UIKit
 
 class UserNotificationTableViewController: UITableViewController, PopUpMenuDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    var userNotificationData:NSMutableArray = NSMutableArray()
     var popUpMenu:PopUpMenu = PopUpMenu()
 
     @IBOutlet weak var usernameLabel: UILabel! = UILabel()
@@ -20,7 +21,33 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
         popUpMenu = PopUpMenu(sourceView: self.view, menuItems: ["Take Photo", "Choose From Library", "Cancel"])
         popUpMenu.delegate = self
         
+        
     }
+    
+    func loadNotifications() {
+        userNotificationData.removeAllObjects()
+        
+        println("loadNotifications called")
+        var findUserNotificationData:PFQuery = PFQuery(className: "Likes")
+        findUserNotificationData.whereKey("liked", equalTo:PFUser.currentUser())
+        
+        findUserNotificationData.findObjectsInBackgroundWithBlock{
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            
+            if (error == nil){
+                for object in objects.reverse() {
+                    self.userNotificationData.addObject(object)
+                }
+            } else {
+                println("error occurred")
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+
     
     override func viewDidAppear(animated: Bool) {
         if (PFUser.currentUser() != nil) {
@@ -58,6 +85,8 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
                 self.usernameLabel.alpha = 1
             })
             
+            self.loadNotifications()
+            
         } else {
             println("user not logged in")
         }
@@ -74,16 +103,66 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return 0
+        return userNotificationData.count
     }
     
-    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell:UserNotificationTableViewCell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as UserNotificationTableViewCell
+        let person:PFObject = self.userNotificationData.objectAtIndex(indexPath.row) as PFObject
+        
+        cell.selectionStyle = .None
+        cell.notificationLabel.alpha = 0
+        cell.notificationImage.alpha = 0
+        cell.notificationTime.alpha = 0
+        
+        var findLiker:PFQuery = PFUser.query()
+        findLiker.whereKey("objectId", equalTo: person.objectForKey("liker").objectId)
+        
+        findLiker.findObjectsInBackgroundWithBlock{
+            (objects:[AnyObject]!, error:NSError!)->Void in
+            if (error == nil) {
+                let user:PFUser = (objects as NSArray).lastObject as PFUser
+                cell.notificationLabel.text = user.username + " liked you"
+                
+                var dataFormatter:NSDateFormatter = NSDateFormatter()
+                dataFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                cell.notificationTime.text = dataFormatter.stringFromDate(person.createdAt)
+                
+                let profileImage:PFFile = user["profileImage"] as PFFile
+                
+                profileImage.getDataInBackgroundWithBlock{
+                    (imageData:NSData!, error:NSError!)->Void in
+                    
+                    if (error == nil) {
+                        println("got image")
+                        let image:UIImage! = UIImage(data: imageData)
+                        cell.notificationImage.contentMode = .ScaleAspectFit
+                        cell.notificationImage.image = image
+                    } else {
+                        println(error.description)
+                    }
+                    
+                }
+            } else {
+                println(error.description)
+            }
+        }
+        UIView.animateWithDuration(0.5, animations: {
+            cell.notificationLabel.alpha = 1
+            cell.notificationImage.alpha = 1
+            cell.notificationTime.alpha = 1
+        })
+
+        
+        return cell
+    }
     
 
     @IBAction func editImageAction(sender: AnyObject) {

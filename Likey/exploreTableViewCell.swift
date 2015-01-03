@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ExploreTableViewCellDelegate {
+    func likeUser(user:PFObject, like:Bool)
+}
+
 class exploreTableViewCell: UITableViewCell {
     
 
@@ -16,10 +20,14 @@ class exploreTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView! = UIImageView()
     
     
-    var originalCellCenter = CGPoint()
     var originalImageCenter = CGPoint()
+    var transitImageCenter = CGPoint()
     var likedImageCenter = CGPoint()
     var likedState = false
+    var previousLikedState = false
+    
+    var likeDelegate: ExploreTableViewCellDelegate?
+    var user:PFObject?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,21 +58,31 @@ class exploreTableViewCell: UITableViewCell {
         
         if recognizer.state == .Began {
             
+            transitImageCenter = self.profileImageView.center
         }
         
         if recognizer.state == .Changed {
             let translation = recognizer.translationInView(self)
-            self.profileImageView.center = CGPointMake(originalImageCenter.x + translation.x, originalImageCenter.y)
-            likedState = self.profileImageView.center.x > -frame.size.width/2.0
+            
+            self.profileImageView.center = CGPointMake(transitImageCenter.x + translation.x, transitImageCenter.y)
+            likedState = translation.x > 0.0
+            
         }
         
         if recognizer.state == .Ended {
             if (!likedState) {
                 UIView.animateWithDuration(0.2, animations: {self.profileImageView.center = self.originalImageCenter})
+                if (likeDelegate != nil && user != nil) {
+                    likeDelegate!.likeUser(user!, like: false)
+                }
             } else {
                 UIView.animateWithDuration(0.2, animations: {self.profileImageView.center = self.likedImageCenter})
-                swap(&originalImageCenter, &likedImageCenter)
+                if (likeDelegate != nil && user != nil) {
+                    likeDelegate!.likeUser(user!, like: true)
+                }
+
             }
+            recognizer.setTranslation(CGPointZero, inView: self)
         }
         
     }

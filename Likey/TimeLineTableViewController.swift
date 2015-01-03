@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate {
+class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate, ExploreTableViewCellDelegate {
     
     var timelineData:NSMutableArray = NSMutableArray()
     
@@ -89,6 +89,8 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:exploreTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as exploreTableViewCell
         let person:PFObject = self.timelineData.objectAtIndex(indexPath.row) as PFObject
+        cell.likeDelegate = self
+        cell.user = person
         
         cell.selectionStyle = .None
         cell.usernameLabel.alpha = 0
@@ -115,6 +117,26 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         return cell
     }
     
+    func likeUser(user:PFObject, like:Bool) {
+        var liked:PFObject = PFObject(className: "Likes")
+        
+        if (like) {
+            liked["liker"] = PFUser.currentUser()
+            liked["liked"] = user
+        
+        
+            liked.saveInBackgroundWithBlock {
+                (success:Bool, error:NSError!)->Void in
+            
+                if (error != nil){
+                    println(error.description)
+                }
+            }
+        } else {
+            
+        }
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -14,6 +14,7 @@
 		88C946201A2BCBFF009C4A16 /* PopUpMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C9461F1A2BCBFF009C4A16 /* PopUpMenu.swift */; };
 		88F3A3241A29574A00334B5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3A3231A29574A00334B5B /* LoginViewController.swift */; };
 		88F3A3261A29578B00334B5B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F3A3251A29578B00334B5B /* SignUpViewController.swift */; };
+		88F42D161A54C90C00B40579 /* UserNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F42D151A54C90C00B40579 /* UserNotificationTableViewCell.swift */; };
 		88F919171A1AE6DA001D5037 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F919161A1AE6DA001D5037 /* AppDelegate.swift */; };
 		88F919191A1AE6DA001D5037 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F919181A1AE6DA001D5037 /* ViewController.swift */; };
 		88F9191C1A1AE6DA001D5037 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88F9191A1A1AE6DA001D5037 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		88C9461F1A2BCBFF009C4A16 /* PopUpMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpMenu.swift; sourceTree = "<group>"; };
 		88F3A3231A29574A00334B5B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		88F3A3251A29578B00334B5B /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		88F42D151A54C90C00B40579 /* UserNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		88F919111A1AE6DA001D5037 /* Likey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Likey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F919151A1AE6DA001D5037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88F919161A1AE6DA001D5037 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				88F919181A1AE6DA001D5037 /* ViewController.swift */,
 				88F919561A1AEA52001D5037 /* Likey-Bridging-Header.h */,
 				88F9191A1A1AE6DA001D5037 /* Main.storyboard */,
+				88F42D151A54C90C00B40579 /* UserNotificationTableViewCell.swift */,
 				883E31931A33AD58007FDE8C /* UserNotificationTableViewController.swift */,
 				88C9461D1A2BBF0F009C4A16 /* PopUpTableViewController.swift */,
 				88C9461F1A2BCBFF009C4A16 /* PopUpMenu.swift */,
@@ -294,6 +297,7 @@
 				88F3A3261A29578B00334B5B /* SignUpViewController.swift in Sources */,
 				88F919191A1AE6DA001D5037 /* ViewController.swift in Sources */,
 				88F919171A1AE6DA001D5037 /* AppDelegate.swift in Sources */,
+				88F42D161A54C90C00B40579 /* UserNotificationTableViewCell.swift in Sources */,
 				88C946201A2BCBFF009C4A16 /* PopUpMenu.swift in Sources */,
 				88C9461E1A2BBF0F009C4A16 /* PopUpTableViewController.swift in Sources */,
 				883E31941A33AD58007FDE8C /* UserNotificationTableViewController.swift in Sources */,
