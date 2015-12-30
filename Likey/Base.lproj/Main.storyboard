@@ -259,7 +259,7 @@
                                 <action selector="loadData" destination="fj0-on-srn" id="XmM-n8-z59"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="tGC-0E-cxM">
+                        <barButtonItem key="rightBarButtonItem" title="profile" id="tGC-0E-cxM">
                             <connections>
                                 <segue destination="AwE-uv-1nG" kind="push" id="Ll5-mi-1qn"/>
                             </connections>
