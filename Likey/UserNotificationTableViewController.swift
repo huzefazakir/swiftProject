@@ -18,7 +18,7 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
     @IBOutlet weak var editImage: UIButton! = UIButton()
     override func viewDidLoad() {
         super.viewDidLoad()
-        popUpMenu = PopUpMenu(sourceView: self.view, menuItems: ["Take Photo", "Choose From Library", "Cancel"])
+        var popUpMenu:PopUpMenu = PopUpMenu(sourceView: self.view, menuItems: ["Take Photo", "Choose From Library", "Cancel"])
         popUpMenu.delegate = self
         
         
@@ -62,8 +62,8 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
             findUser.findObjectsInBackgroundWithBlock{
                 (objects:[AnyObject]!, error:NSError!)->Void in
                 if (error == nil) {
-                    let user:PFUser = (objects as NSArray).lastObject as PFUser
-                    let profileImage:PFFile = user["profileImage"] as PFFile
+                    let user:PFUser = (objects as NSArray).lastObject as! PFUser
+                    let profileImage:PFFile = user["profileImage"] as! PFFile
                     
                     profileImage.getDataInBackgroundWithBlock{
                         (imageData:NSData!, error:NSError!) ->Void in
@@ -114,8 +114,8 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell:UserNotificationTableViewCell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as UserNotificationTableViewCell
-        let person:PFObject = self.userNotificationData.objectAtIndex(indexPath.row) as PFObject
+        let cell:UserNotificationTableViewCell = tableView.dequeueReusableCellWithIdentifier("NotificationCell", forIndexPath: indexPath) as! UserNotificationTableViewCell
+        let person:PFObject = self.userNotificationData.objectAtIndex(indexPath.row) as! PFObject
         
         cell.selectionStyle = .None
         cell.notificationLabel.alpha = 0
@@ -128,14 +128,14 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
         findLiker.findObjectsInBackgroundWithBlock{
             (objects:[AnyObject]!, error:NSError!)->Void in
             if (error == nil) {
-                let user:PFUser = (objects as NSArray).lastObject as PFUser
+                let user:PFUser = (objects as NSArray).lastObject as! PFUser
                 cell.notificationLabel.text = user.username + " liked you"
                 
                 var dataFormatter:NSDateFormatter = NSDateFormatter()
                 dataFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 cell.notificationTime.text = dataFormatter.stringFromDate(person.createdAt)
                 
-                let profileImage:PFFile = user["profileImage"] as PFFile
+                let profileImage:PFFile = user["profileImage"] as! PFFile
                 
                 profileImage.getDataInBackgroundWithBlock{
                     (imageData:NSData!, error:NSError!)->Void in
@@ -193,14 +193,14 @@ class UserNotificationTableViewController: UITableViewController, PopUpMenuDeleg
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = self.scaleImageWith(pickedImage, and: CGSizeMake(100, 100))
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
         
         PFUser.currentUser().setObject(imageFile, forKey: "profileImage")
         PFUser.currentUser().saveInBackgroundWithBlock{
-            (success:Bool!, error:NSError!)->Void in
+            (success:Bool, error:NSError!)->Void in
             
             if(error == nil) {
                 self.editImage.setBackgroundImage(scaledImage, forState: UIControlState.Normal)

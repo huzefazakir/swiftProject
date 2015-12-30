@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key></key>
+	<string></string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app accesses your location when in use and just once when not in use and that location is not saved anywhere. It&apos;s accessed to make sure that you have left your old location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>to find other users nearby</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

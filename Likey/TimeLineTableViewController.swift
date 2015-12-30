@@ -8,9 +8,13 @@
 
 import UIKit
 
-class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate, ExploreTableViewCellDelegate {
+class TimeLineTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate, ExploreTableViewCellDelegate, CLLocationManagerDelegate {
     
     var timelineData:NSMutableArray = NSMutableArray()
+    let userLocationManager = CLLocationManager()
+    var locationUpdatesStarted = false
+    
+    
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -50,7 +54,9 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         if (PFUser.currentUser() == nil){
             self.performSegueWithIdentifier("loginPage", sender: self)
         } else {
-            self.loadData()
+            if (!locationUpdatesStarted) {
+                self.userLocationManager.startUpdatingLocation()
+            }
         }
     }
     
@@ -59,11 +65,16 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorColor = UIColor.whiteColor()
+        self.userLocationManager.delegate = self
+        self.userLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.userLocationManager.requestAlwaysAuthorization()
+        self.userLocationManager.distanceFilter = 100
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,8 +98,8 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:exploreTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as exploreTableViewCell
-        let person:PFObject = self.timelineData.objectAtIndex(indexPath.row) as PFObject
+        let cell:exploreTableViewCell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! exploreTableViewCell
+        let person:PFObject = self.timelineData.objectAtIndex(indexPath.row) as! PFObject
         cell.likeDelegate = self
         cell.user = person
         
@@ -98,7 +109,7 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
         
         cell.usernameLabel.text = person.objectForKey("username") as? String
         
-        let profileImage:PFFile = person.objectForKey("profileImage") as PFFile
+        let profileImage:PFFile = person.objectForKey("profileImage") as! PFFile
         
         profileImage.getDataInBackgroundWithBlock{
             (imageData:NSData!, error:NSError!)->Void in
@@ -136,6 +147,28 @@ class TimeLineTableViewController: UITableViewController, UIImagePickerControlle
             
         }
         
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        // check if the timestamp is not too old.
+        
+        var userLocation:PFObject = PFObject(className: "Locations")
+        userLocation["user"] = PFUser.currentUser()
+        userLocation["latitude"] = manager.location.coordinate.latitude
+        userLocation["longitude"] = manager.location.coordinate.longitude
+        
+        userLocation.saveInBackgroundWithBlock {
+            (success:Bool, error:NSError!)->Void in
+            
+            if (error != nil) {
+                println(error.description)
+            }
+        }
+        loadData()
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println(error.localizedDescription)
     }
     /*
     // Override to support conditional editing of the table view.

@@ -36,7 +36,7 @@ class SignUpViewController: UIViewController,  UIImagePickerControllerDelegate, 
         user.password = passwordTextField.text
         
         user.signUpInBackgroundWithBlock{
-            (success:Bool!, error:NSError!)->Void in
+            (success:Bool, error:NSError!)->Void in
             if (error == nil){
                 println("Sign Up successful")
                 var imagePicker:UIImagePickerController = UIImagePickerController()
@@ -55,14 +55,14 @@ class SignUpViewController: UIViewController,  UIImagePickerControllerDelegate, 
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as UIImage
+        let pickedImage:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         let scaledImage = self.scaleImageWith(pickedImage, and: CGSizeMake(100, 100))
         let imageData = UIImagePNGRepresentation(scaledImage)
         let imageFile:PFFile = PFFile(data: imageData)
         
         PFUser.currentUser().setObject(imageFile, forKey: "profileImage")
         PFUser.currentUser().saveInBackgroundWithBlock{
-            (success:Bool!, error:NSError!)->Void in
+            (success:Bool, error:NSError!)->Void in
             
             if(error == nil) {
                 self.performSegueWithIdentifier("signedUp", sender: self)

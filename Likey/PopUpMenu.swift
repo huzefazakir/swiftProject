@@ -21,7 +21,7 @@ class PopUpMenu: NSObject, PopUpTableViewControllerDelegate {
     let popUpMenuTableViewBottomInsert:CGFloat = 64.0
     let popUpMenuContainerView = UIView()
     let popUpMenuTableViewController:PopUpTableViewController = PopUpTableViewController()
-    let originView:UIView!
+    var originView:UIView!
     
     var animator:UIDynamicAnimator!
     var delegate:PopUpMenuDelegate?
@@ -33,13 +33,18 @@ class PopUpMenu: NSObject, PopUpTableViewControllerDelegate {
     }
     
     init(sourceView:UIView, menuItems:Array<String>){
+        
         super.init()
         originView = sourceView
         popUpMenuTableViewController.tableData = menuItems
         
-        setUpPopUpMenu()
+        
         
         animator = UIDynamicAnimator(referenceView: originView)
+        
+        setUpPopUpMenu()
+        
+        
     }
     
     func setUpPopUpMenu(){
@@ -48,7 +53,7 @@ class PopUpMenu: NSObject, PopUpTableViewControllerDelegate {
         popUpMenuContainerView.backgroundColor = UIColor.clearColor()
         popUpMenuContainerView.clipsToBounds = false
         
-        originView.addSubview(popUpMenuContainerView)
+        originView!.addSubview(popUpMenuContainerView)
         
         let blurView:UIVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: UIBlurEffectStyle.Light))
         blurView.frame = popUpMenuContainerView.bounds
@@ -81,7 +86,7 @@ class PopUpMenu: NSObject, PopUpTableViewControllerDelegate {
         animator.addBehavior(gravityBehaviour)
         
         let collisionBehavior:UICollisionBehavior = UICollisionBehavior(items: [popUpMenuContainerView])
-        collisionBehavior.addBoundaryWithIdentifier("popUpMenuBoundary", fromPoint: CGPointMake(0, boundryY), toPoint: CGPointMake(originView.frame.size.width, boundryY))
+        collisionBehavior.addBoundaryWithIdentifier("popUpMenuBoundary", fromPoint: CGPointMake(0, boundryY), toPoint: CGPointMake(originView!.frame.size.width, boundryY))
         animator.addBehavior(collisionBehavior)
         
     }
